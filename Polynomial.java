@@ -11,16 +11,18 @@ public class Polynomial{
     }
 
     public Polynomial add(Polynomial poly) {
-        int maxLength = Math.max(this.coefficients.length, poly.coefficients.length);
-        double[] resultCoefficients = new double[maxLength];
-
-        for (int i = 0; i < maxLength; i++) {
-            double thisCoeff = i < this.coefficients.length ? this.coefficients[i] : 0;
-            double polyCoeff = i < poly.coefficients.length ? poly.coefficients[i] : 0;
-            resultCoefficients[i] = thisCoeff + polyCoeff;
+        int len = Math.max(this.coefficients.length, poly.coefficients.length);
+        double[] result = new double[len];
+        
+        for (int i = 0; i < this.coefficients.length; i++) {
+            result[i] = this.coefficients[i];
         }
-
-        return new Polynomial(resultCoefficients);
+    
+        for (int i = 0; i < poly.coefficients.length; i++) {
+            result[i] += poly.coefficients[i];
+        }
+    
+        return new Polynomial(result);
     }
 
     public double evaluate(double x) {
